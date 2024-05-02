@@ -29,7 +29,7 @@ export const getDecoded = (encoded, translations) => {
 export const getUniqueId = (encoded, translations) => {
   const uniqueIdCounter = {};
 
-  encoded.map((item) => {
+  encoded.forEach((item) => {
     Object.entries(item).forEach(([key, value]) => {
       if (shouldDecode(key, value, translations)) {
         uniqueIdCounter[value] = (uniqueIdCounter[value] || 0) + 1;
@@ -37,18 +37,9 @@ export const getUniqueId = (encoded, translations) => {
     });
   });
 
-  const uniqueId = Object.entries(uniqueIdCounter).reduce(
-    (acc, [id, count]) => {
-      if (count === 1) {
-        return [...acc, id];
-      } else {
-        return acc;
-      }
-    },
-    []
-  );
-
-  return uniqueId;
+  return Object.entries(uniqueIdCounter)
+    .filter(([, count]) => count === 1)
+    .map(([id]) => id);
 };
 
 const decoded = getDecoded(encoded, translations);
