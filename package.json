@@ -1,0 +1,14 @@
+{
+  "name": "task_1",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "test": "node _tests.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
